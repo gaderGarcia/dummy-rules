@@ -1,0 +1,43 @@
+@startuml
+
+abstract IFeature {
+  +get_attribute_name(): str
+  +get_value(): Union[str, int, float, bool]
+}
+
+abstract IRule {
+  +execute(features: List[Type[IFeature]]): void
+  +get_result(): Union[float, int, bool]
+}
+
+abstract IController {
+  +get_features(): List[Type[IFeature]]
+  +get_rules(): List[Type[IRule]]
+  +execute(): int
+}
+
+/'
+class YourConcreteFeature implements IFeature {
+  -attribute_name: str
+  -value: Union[str, int, float, bool]
+  +get_attribute_name(): str
+  +get_value(): Union[str, int, float, bool]
+}
+
+class YourConcreteRule implements IRule {
+  +execute(features: List[Type[IFeature]]): void
+  +get_result(): Union[float, int, bool]
+}
+
+class YourConcreteController implements IController {
+  +get_features(): List[Type[IFeature]]
+  +get_rules(): List[Type[IRule]]
+  +execute(): int
+} 
+
+IController o-- IFeature
+IRule o-- IFeature
+IRule o-- IController
+'/
+
+@enduml
