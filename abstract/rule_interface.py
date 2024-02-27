@@ -19,5 +19,5 @@ class IRule(ABC):
         pass
     
     @abstractmethod
-    def get_result(self)->Union[float, int, bool]:
+    def get_result(self)->Union[float, int, bool,str]:
         pass
