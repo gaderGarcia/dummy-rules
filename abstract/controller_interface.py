@@ -14,7 +14,7 @@ class IController(ABC):
         pass
 
     @abstractmethod
-    def get_fraud_score(self):
+    def get_fraud_score(self)->int:
         pass
 
     @final
@@ -26,8 +26,7 @@ class IController(ABC):
         self.execute_logic()
 
         #Validation post AO logic to review if we need more steps to execute
-        return self.postExecute()
-            
+        return self.postExecute()       
     
     @abstractmethod
     def execute_logic(self)->int:

@@ -7,6 +7,7 @@ class RuleAddress(IRule):
         self.value = 0
     
     def execute(self, features: List[type[IFeature]]):
+        #Call external service if it is required
         self.value = len(features[0].get_value())
         
     def get_result(self) -> float | int | bool | str:

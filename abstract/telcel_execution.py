@@ -18,7 +18,7 @@ class TelcelController(IController):
         self.features.append(feature_B)
         return self.features
     
-    def get_fraud_score(self):
+    def get_fraud_score(self)->int:
         return self.fraudScore
     
     def get_rules(self) -> List[type[IRule]]:
