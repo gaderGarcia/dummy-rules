@@ -1,3 +1,3 @@
 class Controller:
-    def  execute():
+    def execute(self):
         print("Something to print")
