@@ -6,7 +6,7 @@ format:
 	#format code
 lint:
 	#pylint
-	python3 -m mypy --disallow-untyped-calls --disallow-untyped-defs --disallow-incomplete-defs abstract/telcel_execution.py
+	python -m mypy --disallow-untyped-calls --disallow-untyped-defs --disallow-incomplete-defs abstract/telcel_execution.py
 metadata:
 	#provides the metadata source of the functions
 	python3 metadata.py
