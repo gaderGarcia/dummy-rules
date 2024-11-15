@@ -9,6 +9,7 @@ class TelcelController(IController):
     def __init__(self) -> None:
         self.features=[]
         self.rules:List[Type[IRule]] = []
+        self.fraudScore = 0
         
     def get_features(self) -> List[type[IFeature]]:
         feature_A = FeatureBillingAddress("portland")
@@ -17,6 +18,9 @@ class TelcelController(IController):
         self.features.append(feature_B)
         return self.features
     
+    def get_fraud_score(self)->int:
+        return self.fraudScore
+    
     def get_rules(self) -> List[type[IRule]]:
         rule1= RuleAddress()
         rule2= RuleAddress() 
@@ -24,8 +28,16 @@ class TelcelController(IController):
         self.rules.append(rule2)
         return self.rules
     
-    def execute(self) -> int:
+    def execute_logic(self) -> int:
         total = 0
         for rule in self.rules:
             total += rule.get_result()          
+        self.fraudScore = total
         return total
+    
+    #Override postExec to indicate 
+    #if a condition is met we need to run another Controller
+    def postExecute(self) -> str:
+        if self.fraudScore < 50:
+            return "TelcelControllerB"
+        return ""
